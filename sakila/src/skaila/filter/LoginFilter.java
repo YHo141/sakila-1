@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/views")
+@WebFilter("/auth/*")
 public class LoginFilter implements Filter {
 
     /**
@@ -39,6 +39,7 @@ public class LoginFilter implements Filter {
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		if(session.getAttribute("loginStaff") == null) {
 			((HttpServletResponse)response).sendRedirect(request.getServletContext().getContextPath() + "/LoginServlet");
+			System.out.println("로그인 확인");
 			return;
 		}
 		chain.doFilter(request, response);
