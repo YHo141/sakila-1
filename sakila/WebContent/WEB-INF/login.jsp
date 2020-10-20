@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
 <head>
@@ -15,8 +16,12 @@
     	<input type="text" name="u" placeholder="Username" required="required" />
         <input type="password" name="p" placeholder="Password" required="required" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+        <div>
+			Today : ${stats.day} (visitant ${stats.cnt}) --- (All : ${sumCount})
+		</div>
     </form>
 </div>
+
 
 </body>
 </html>

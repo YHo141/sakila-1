@@ -12,7 +12,7 @@ public class DBListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce)  { 
         System.out.println("DBListener.contextInitialized() 실행");
         try {
-        	Class.forName("");
+        	Class.forName("org.mariadb.jdbc.Driver");
         	System.out.println("mariadb 드라이브로딩 성공");
 		} catch (Exception e) {
 			System.out.println("Class.forName() 실행 실패 !");
