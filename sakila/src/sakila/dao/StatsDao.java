@@ -83,7 +83,6 @@ public class StatsDao {
 		PreparedStatement stmt = conn.prepareStatement(statsQuary.SELECT_SUM_CNT);
 		
 		ResultSet rs = stmt.executeQuery();
-		
 		System.out.println(rs + ": select_sum_cnt Á¤»ó");
 		
 		if(rs.next()) {

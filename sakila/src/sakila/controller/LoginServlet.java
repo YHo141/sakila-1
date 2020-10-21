@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sakila.service.StaffService;
 import sakila.service.StatsService;
+import sakila.vo.Staff;
 import sakila.vo.Stats;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private StatsService statsService;
+	private StaffService staffService;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -49,7 +52,52 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int staffId = Integer.parseInt(request.getParameter("staffId"));
+		String password = request.getParameter("password");
+		
+		System.out.println(staffId + "사용자 번호 확인");
+		System.out.println(password + "사용자 비닐번호 확인");
+		
+		staffService = new StaffService();
 
+		Staff staff = staffService.getStaffIdAndName(staffId, password);
+		
+		if(staff != null) {
+			staffId = staff.getStaffId();
+			String userName = staff.getUserName();
+			
+			request.setAttribute("staffId", staffId);
+			request.setAttribute("userName", userName);
+			
+			request.getRequestDispatcher("/WEB-INF/auth/Index.jsp").forward(request, response);
+			
+			return;
+		}
+		
+		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
