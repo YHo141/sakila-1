@@ -7,10 +7,10 @@ import java.sql.ResultSet;
 import sakila.quary.StaffQuary;
 import sakila.vo.Staff;
 
-public class StaffDao {
+public class StaffDao implements IStaffDao{
 	private StaffQuary staffQuary;
 	
-	// 사용자 로그인 확인
+	@Override	// 사용자 로그인 확인
 	public Staff selectStaffByKey(Connection conn, Staff staff) throws Exception {
 		Staff returnStaff = null;
 		staffQuary = new StaffQuary();

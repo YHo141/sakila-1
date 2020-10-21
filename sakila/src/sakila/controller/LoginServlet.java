@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sakila.dao.StaffDao;
+import sakila.dao.StatsDao;
 import sakila.service.StaffService;
 import sakila.service.StatsService;
 import sakila.vo.Staff;
@@ -33,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}*/
 		
-		statsService = new StatsService();
+		statsService = new StatsService(new StatsDao());
 		
 		// 2개의 리턴값을 받아옴
 		Map<String, Object> map = statsService.getStats();
@@ -58,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(staffId + "사용자 번호 확인");
 		System.out.println(password + "사용자 비닐번호 확인");
 		
-		staffService = new StaffService();
+		staffService = new StaffService(new StaffDao());
 
 		Staff staff = staffService.getStaffIdAndName(staffId, password);
 		

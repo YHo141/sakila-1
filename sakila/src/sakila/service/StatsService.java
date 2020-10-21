@@ -10,17 +10,24 @@ import java.util.Map;
 
 import sakila.commons.DBUtil;
 import sakila.commons.DayUtil;
+import sakila.dao.IStatsDao;
 import sakila.dao.StatsDao;
 import sakila.vo.Stats;
 
 public class StatsService {
-	private StatsDao statsDao;
+	private IStatsDao iStatsDao;
+	
+	public StatsService(IStatsDao iStatsDao) {
+		this.iStatsDao = iStatsDao;
+	}
+	
 	private DBUtil dbUtil;
 	private DayUtil dayUtil;
-	// 
+	
+	
 	public void countStats() {
 		Connection conn = null;
-		statsDao = new StatsDao();
+		iStatsDao = new StatsDao();
 		dbUtil = new DBUtil();
 		dayUtil = new DayUtil();
 		
@@ -35,11 +42,11 @@ public class StatsService {
 			Stats stats = new Stats();
 			stats.setDay(day);
 			
-			if(statsDao.selectDay(conn, stats)) {
-				statsDao.updateStats(conn, stats);
+			if(iStatsDao.selectDay(conn, stats)) {
+				iStatsDao.updateStats(conn, stats);
 			}
 			else {
-				statsDao.insertState(conn, stats);
+				iStatsDao.insertState(conn, stats);
 			}
 			
 			conn.commit();
@@ -59,7 +66,7 @@ public class StatsService {
 		Stats stats = null;
 		Connection conn = null;
 		
-		statsDao = new StatsDao();
+		iStatsDao = new StatsDao();
 		dbUtil = new DBUtil();
 		dayUtil = new DayUtil();
 		
@@ -73,8 +80,8 @@ public class StatsService {
 			
 			stats = new Stats();
 			stats.setDay(day);
-			stats.setCount(statsDao.selectCnt(conn, stats));
-			sumCnt = statsDao.selectSumCnt(conn);
+			stats.setCount(iStatsDao.selectCnt(conn, stats));
+			sumCnt = iStatsDao.selectSumCnt(conn);
 			
 			// mapø° ≥÷æÓ¡‹
 			map.put("stats", stats);

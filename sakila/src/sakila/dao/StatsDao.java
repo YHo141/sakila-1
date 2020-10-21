@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import sakila.quary.StatsQuary;
 import sakila.vo.Stats;
 
-public class StatsDao {
+public class StatsDao implements IStatsDao{
 	private StatsQuary statsQuary;
-	// 오늘 날짜가 있는지 없는지 확인
+	
+	@Override	// 오늘 날짜가 있는지 없는지 확인
 	public boolean selectDay(Connection conn, Stats stats) throws Exception{
 		boolean result = false; 
 		
@@ -31,7 +32,7 @@ public class StatsDao {
 		return result;
 	}
 	
-	// 오늘 날짜가 없으면 추가
+	@Override	// 오늘 날짜가 없으면 추가
 	public void insertState(Connection conn, Stats stats) throws Exception{
 		statsQuary = new StatsQuary();	
 		
@@ -43,7 +44,7 @@ public class StatsDao {
 		stmt.close();
 	}
 	
-	// 오늘 날짜가 있으면 업데이트
+	@Override	// 오늘 날짜가 있으면 업데이트
 	public void updateStats(Connection conn, Stats stats) throws Exception{
 		statsQuary = new StatsQuary();	
 		
@@ -55,7 +56,7 @@ public class StatsDao {
 		stmt.close();
 	}
 	
-	// 내가 있는 날짜 기준으로 방문자가 나오는 메소드
+	@Override	// 내가 있는 날짜 기준으로 방문자가 나오는 메소드
 	public int selectCnt(Connection conn, Stats stats) throws Exception{
 		int getCnt = 1;
 		
@@ -74,7 +75,7 @@ public class StatsDao {
 		return getCnt;
 	}
 	
-	// 전체 방문자 페이지를 고르는 메소드
+	@Override	// 전체 방문자 페이지를 고르는 메소드
 	public int selectSumCnt(Connection conn) throws Exception{
 		int getCount = 1;
 		
@@ -92,26 +93,3 @@ public class StatsDao {
 		return getCount;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

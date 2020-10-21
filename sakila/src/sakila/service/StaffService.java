@@ -5,11 +5,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sakila.commons.DBUtil;
+import sakila.dao.IStaffDao;
 import sakila.dao.StaffDao;
 import sakila.vo.Staff;
 
 public class StaffService {
-	private StaffDao staffDao;
+	private IStaffDao iStaffDao;
+	
+	public StaffService(IStaffDao iStaffDao) {
+		this.iStaffDao = iStaffDao;
+	}
+	
 	private DBUtil dbUtil;
 	
 	// 아이디와 유저이름을 가져옴
@@ -18,7 +24,6 @@ public class StaffService {
 		
 		Connection conn = null;
 		
-		staffDao = new StaffDao();
 		dbUtil = new DBUtil();
 		
 		try {
@@ -30,7 +35,7 @@ public class StaffService {
 			setStaff.setStaffId(staffId);
 			setStaff.setPassword(password);
 			
-			staff = staffDao.selectStaffByKey(conn, setStaff);
+			staff = iStaffDao.selectStaffByKey(conn, setStaff);
 			
 			System.out.println(staff.getStaffId() + "staffId 최종");
 			System.out.println(staff.getUserName() + "username 최종");
