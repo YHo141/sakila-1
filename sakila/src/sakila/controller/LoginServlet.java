@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		
 		
 		request.setAttribute("stats", stats);
-		request.setAttribute("sumCount", sumCnt);
+		request.setAttribute("sumCount", sumCnt);	
 		
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
@@ -70,6 +70,21 @@ public class LoginServlet extends HttpServlet {
 			
 			request.setAttribute("staffId", staffId);
 			request.setAttribute("userName", userName);
+			
+			statsService = new StatsService(new StatsDao());
+			
+			// 2개의 리턴값을 받아옴
+			Map<String, Object> map = statsService.getStats();
+			Stats stats = (Stats)(map.get("stats"));
+			int sumCnt = (Integer)(map.get("sumCnt"));
+			
+			// 최종 확인
+			System.out.println(stats + "<--- 최종");
+			System.out.println(sumCnt + "<--- 최종");
+			
+			
+			request.setAttribute("stats", stats);
+			request.setAttribute("sumCnt", sumCnt);
 			
 			request.getRequestDispatcher("/WEB-INF/auth/Index.jsp").forward(request, response);
 			

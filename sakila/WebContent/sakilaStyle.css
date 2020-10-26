@@ -1,0 +1,172 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #d43535;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+body {
+	font-size: 12pt;
+	line-height: 1.75em;
+	font-family: Arial, sans-serif;
+	background: #EAEAEA;
+	color: #c0c1c1;
+}
+
+br.clear {
+	clear: both;
+}
+
+h2,h3,h4 {
+	margin-bottom: 1em;
+	font-family: Arvo, serif;
+	color: #ffffff;
+}
+
+img.left {
+	float: left;
+	margin: 5px 0px 25px 0;
+}
+
+img.top {
+	margin: 5px 0 20px 0;
+}
+
+p {
+	margin-bottom: 1.1em;
+}
+
+ul {
+	margin-bottom: auto;
+}
+	
+#bg {
+	padding: 30px 0 80px 0;
+}
+
+#box1 {
+	margin: 0px 0 -90px 0;
+}
+
+#box2 {
+	margin: 0px 0 25px 0;
+	overflow: hidden;
+}
+
+#content {
+	width: 855px;
+	height: 1000px;
+	margin: 0px 0 0 245px;
+	padding: 40px;
+	background: #ffffff;
+}
+
+#content h2 {
+	font-size: 40px;
+	border-bottom: dashed 1px #424545;
+	padding: 0px 0 30px 0;
+}
+
+#copyright {
+	margin: 15px 0 0 0;
+	text-align: center;
+	color: #707070;
+	font-size: 0.9em;
+}
+
+#copyright p {
+	text-align: right;
+}
+
+#main {
+	position: relative;
+	padding: 0px;
+	margin: 30px 0 0 0;
+	width: 1180px;
+	color: #6b6b6b;
+}
+
+#main a {
+	color: #262626;
+}
+
+#main strong {
+	color: #404040;
+}
+
+#main h2, #main h3, #main h4 {
+	color: #141414;
+}
+
+#main ul {
+	list-style: none;
+}
+
+#main ul li {
+	padding: 10px 0 10px 0;
+}
+
+#main ul li.first {
+	padding-top: 0;
+	border-top: 0;
+}
+	
+#outer {
+	position: relative;
+	width: 1180px;
+	margin: 0 auto;
+}
+
+#sidebar {
+	width: 180px;
+	float: left;
+	padding: 30px;
+	color: #959797;
+}
+
+#sidebar a {
+	color: #42454;
+}
+
+#sidebar h2, #sidebar h3, #sidebar h4 {
+	color: #262626;
+}
+
+#sidebar ul {
+	list-style: none;
+}
+
+#sidebar ul li {
+	padding: 20px 0 10px 0;
+}
+
+#sidebar li.line {
+	border-top: dashed 3px #424545;
+}
+
+#sidebar ul li.first {
+	padding-top: 0;
+	border-top: 0;
+}
+
+#logout    {
+    background-color: #262626;
+    color: #ffffff;
+    width: 100%;
+    height: 25px;
+    border-radius: 30px;
+    margin: 10px 0 70px 0;
+}
+
+#staff{
+	width: 100%;
+	text-align:right;
+	font-size: 15px;
+}
