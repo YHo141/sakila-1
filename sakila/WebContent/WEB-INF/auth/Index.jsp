@@ -41,7 +41,7 @@
 						
 						<ul class="linkedList">
 							<li class="line">
-								<a href="#">홈</a>
+								<a href="${pageContext.request.contextPath}/IndexServlet">홈</a>
 							</li>
 							<li>
 								<a href="#">영화 반납</a>
