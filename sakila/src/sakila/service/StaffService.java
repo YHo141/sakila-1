@@ -1,12 +1,15 @@
 package sakila.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import sakila.commons.DBUtil;
 import sakila.dao.IStaffDao;
 import sakila.dao.StaffDao;
+import sakila.vo.CoAndCiAndAAndS;
 import sakila.vo.Staff;
 
 public class StaffService {
@@ -23,7 +26,6 @@ public class StaffService {
 		Staff staff = null;
 		
 		Connection conn = null;
-		
 		dbUtil = new DBUtil();
 		
 		try {
@@ -53,4 +55,60 @@ public class StaffService {
 		
 		return staff;
 	}
+	
+	public List<CoAndCiAndAAndS> getStaff(int staffId){
+		List<CoAndCiAndAAndS> list = new ArrayList<CoAndCiAndAAndS>();
+		
+		Connection conn = null;
+		dbUtil = new DBUtil();	
+		
+		try {
+			conn = dbUtil.getConnection();
+			conn.setAutoCommit(false);
+			System.out.println(conn + ": StaffService(getStaff) conn확인");
+			
+			list = iStaffDao.selectStaff(conn, staffId);
+			System.out.println(conn + ": StaffService(getStaff) list확인");
+			
+			conn.commit();
+		} catch (Exception e) {
+			System.out.println("StaffService 예외발생");
+			e.printStackTrace();
+			try {conn.rollback();} catch (Exception e1) {e1.printStackTrace();}
+		} finally {
+			try {conn.close();} catch (Exception e1) {e1.printStackTrace();}
+		}
+		
+		
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

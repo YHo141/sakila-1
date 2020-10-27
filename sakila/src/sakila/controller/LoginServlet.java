@@ -24,16 +24,10 @@ public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
-		// 세션을 서블렛이 실행 될때 확인..
-		// 로그인이 구현되면 로그인 했을 경우 세션 발생
-		session.setAttribute("test", "test");
-		
-		/*
 		if(session.getAttribute("loginStaff") != null) {
-			response.sendRedirect(request.getContextPath()+"/auth/IndexServlet");
+			request.getRequestDispatcher("/WEB-INF/auth/Index.jsp").forward(request, response);;
 			return;
-		}*/
+		}
 		
 		statsService = new StatsService(new StatsDao());
 		
@@ -82,6 +76,9 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(stats + "<--- 최종");
 			System.out.println(sumCnt + "<--- 최종");
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginStaff", staffId);
+			
 			
 			request.setAttribute("stats", stats);
 			request.setAttribute("sumCnt", sumCnt);
@@ -90,7 +87,7 @@ public class LoginServlet extends HttpServlet {
 			
 			return;
 		}
-		
+			
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 

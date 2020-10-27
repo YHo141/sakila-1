@@ -3,8 +3,14 @@ package sakila.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import sakila.quary.StaffQuary;
+import sakila.vo.Address;
+import sakila.vo.City;
+import sakila.vo.CoAndCiAndAAndS;
+import sakila.vo.Country;
 import sakila.vo.Staff;
 
 public class StaffDao implements IStaffDao{
@@ -36,4 +42,48 @@ public class StaffDao implements IStaffDao{
 		
 		return returnStaff;
 	}
+	
+	@Override
+	public List<CoAndCiAndAAndS> selectStaff(Connection conn, int staffId) throws Exception {
+		List<CoAndCiAndAAndS> list = new ArrayList<CoAndCiAndAAndS>();
+		staffQuary = new StaffQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(staffQuary.SELECT_STAFF);
+		stmt.setInt(1, staffId);
+		System.out.println(stmt + ": staffDao(selectStaffy) Äõ¸®¹® È®ÀÎ");
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			CoAndCiAndAAndS returnStaff = new CoAndCiAndAAndS();
+			returnStaff.setCity(new City());
+			returnStaff.setCountry(new Country());
+			returnStaff.setStaff(new Staff());
+			returnStaff.setAddress(new Address());
+			
+			returnStaff.getStaff().setUserName(rs.getString("s.username"));
+			returnStaff.getStaff().setLastName(rs.getString("name"));
+			returnStaff.getAddress().setPhone(rs.getString("a.phone"));
+			returnStaff.getCountry().setCountry(rs.getString("address"));
+			returnStaff.getStaff().setEmail(rs.getString("s.email"));
+			
+			list.add(returnStaff);
+		}
+		
+		stmt.close();
+		
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
