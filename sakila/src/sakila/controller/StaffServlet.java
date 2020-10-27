@@ -28,6 +28,7 @@ public class StaffServlet extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
+		
 		request.getRequestDispatcher("/WEB-INF/auth/staff/staffOne.jsp").forward(request, response);
 	}
 

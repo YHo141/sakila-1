@@ -8,7 +8,7 @@
 </head>
 <body>
 	<c:forEach var="b" items="${list}">
-		${b.staff.username }
+		<div>${b}</div>
 	</c:forEach>
 </body>
 </html>

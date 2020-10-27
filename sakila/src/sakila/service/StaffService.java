@@ -67,6 +67,7 @@ public class StaffService {
 			conn.setAutoCommit(false);
 			System.out.println(conn + ": StaffService(getStaff) conn확인");
 			
+			
 			list = iStaffDao.selectStaff(conn, staffId);
 			System.out.println(conn + ": StaffService(getStaff) list확인");
 			
@@ -78,7 +79,6 @@ public class StaffService {
 		} finally {
 			try {conn.close();} catch (Exception e1) {e1.printStackTrace();}
 		}
-		
 		
 		return list;
 	}

@@ -53,6 +53,7 @@ public class StaffDao implements IStaffDao{
 		System.out.println(stmt + ": staffDao(selectStaffy) 쿼리문 확인");
 		
 		ResultSet rs = stmt.executeQuery();
+		System.out.println(rs + ": staffDao(selectStaffy) rs 확인");
 		
 		while(rs.next()) {
 			CoAndCiAndAAndS returnStaff = new CoAndCiAndAAndS();
@@ -66,6 +67,7 @@ public class StaffDao implements IStaffDao{
 			returnStaff.getAddress().setPhone(rs.getString("a.phone"));
 			returnStaff.getCountry().setCountry(rs.getString("address"));
 			returnStaff.getStaff().setEmail(rs.getString("s.email"));
+			
 			
 			list.add(returnStaff);
 		}
