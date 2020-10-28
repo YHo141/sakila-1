@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import sakila.dao.RentalDao;
 import sakila.service.RentalService;
-import sakila.vo.RentalAndFilm;
+import sakila.vo.JoinToTable;
 
 
 @WebServlet("/RentalServlet")
@@ -20,7 +20,7 @@ public class RentalServlet extends HttpServlet {
 	private RentalService rentalService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		rentalService = new RentalService(new RentalDao());
-		List<RentalAndFilm> list = new ArrayList<RentalAndFilm>();
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		
 		list = rentalService.getFilmRentalList();
 		request.setAttribute("list", list);

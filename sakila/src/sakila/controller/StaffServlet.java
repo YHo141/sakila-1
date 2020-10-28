@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import sakila.dao.StaffDao;
 import sakila.service.StaffService;
-import sakila.vo.CoAndCiAndAAndS;
+import sakila.vo.JoinToTable;
 
 @WebServlet("/StaffServlet")
 public class StaffServlet extends HttpServlet {
@@ -24,7 +24,7 @@ public class StaffServlet extends HttpServlet {
 		System.out.println(staffId);
 		
 		staffService = new StaffService(new StaffDao());
-		List<CoAndCiAndAAndS> list = staffService.getStaff(staffId);
+		List<JoinToTable> list = staffService.getStaff(staffId);
 		
 		request.setAttribute("list", list);
 		

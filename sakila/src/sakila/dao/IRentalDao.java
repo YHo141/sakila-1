@@ -3,8 +3,8 @@ package sakila.dao;
 import java.sql.Connection;
 import java.util.List;
 
-import sakila.vo.RentalAndFilm;
+import sakila.vo.JoinToTable;
 
 public interface IRentalDao {
-	List<RentalAndFilm> selectFilmReturnList(Connection conn) throws Exception;
+	List<JoinToTable> selectFilmReturnList(Connection conn) throws Exception;
 }

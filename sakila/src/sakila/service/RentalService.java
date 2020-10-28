@@ -6,7 +6,7 @@ import java.util.List;
 
 import sakila.commons.DBUtil;
 import sakila.dao.IRentalDao;
-import sakila.vo.RentalAndFilm;
+import sakila.vo.JoinToTable;
 
 public class RentalService {
 	private IRentalDao iRentalDao;
@@ -17,8 +17,8 @@ public class RentalService {
 	
 	private DBUtil dbUtil;
 	
-	public List<RentalAndFilm> getFilmRentalList() {
-		List<RentalAndFilm> list = new ArrayList<RentalAndFilm>();
+	public List<JoinToTable> getFilmRentalList() {
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		dbUtil = new DBUtil();
 		
 		Connection conn = null;

@@ -2,14 +2,11 @@ package sakila.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import sakila.commons.DBUtil;
 import sakila.dao.IStaffDao;
-import sakila.dao.StaffDao;
-import sakila.vo.CoAndCiAndAAndS;
+import sakila.vo.JoinToTable;
 import sakila.vo.Staff;
 
 public class StaffService {
@@ -56,8 +53,8 @@ public class StaffService {
 		return staff;
 	}
 	
-	public List<CoAndCiAndAAndS> getStaff(int staffId){
-		List<CoAndCiAndAAndS> list = new ArrayList<CoAndCiAndAAndS>();
+	public List<JoinToTable> getStaff(int staffId){
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		
 		Connection conn = null;
 		dbUtil = new DBUtil();	

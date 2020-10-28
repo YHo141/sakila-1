@@ -9,8 +9,8 @@ import java.util.List;
 import sakila.quary.StaffQuary;
 import sakila.vo.Address;
 import sakila.vo.City;
-import sakila.vo.CoAndCiAndAAndS;
 import sakila.vo.Country;
+import sakila.vo.JoinToTable;
 import sakila.vo.Staff;
 
 public class StaffDao implements IStaffDao{
@@ -44,8 +44,8 @@ public class StaffDao implements IStaffDao{
 	}
 	
 	@Override
-	public List<CoAndCiAndAAndS> selectStaff(Connection conn, int staffId) throws Exception {
-		List<CoAndCiAndAAndS> list = new ArrayList<CoAndCiAndAAndS>();
+	public List<JoinToTable> selectStaff(Connection conn, int staffId) throws Exception {
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		staffQuary = new StaffQuary();
 		
 		PreparedStatement stmt = conn.prepareStatement(staffQuary.SELECT_STAFF);
@@ -56,20 +56,20 @@ public class StaffDao implements IStaffDao{
 		System.out.println(rs + ": staffDao(selectStaffy) rs »Æ¿Œ");
 		
 		while(rs.next()) {
-			CoAndCiAndAAndS returnStaff = new CoAndCiAndAAndS();
-			returnStaff.setCity(new City());
-			returnStaff.setCountry(new Country());
-			returnStaff.setStaff(new Staff());
-			returnStaff.setAddress(new Address());
+			JoinToTable join = new JoinToTable();
+			join.setCity(new City());
+			join.setCountry(new Country());
+			join.setStaff(new Staff());
+			join.setAddress(new Address());
 			
-			returnStaff.getStaff().setUserName(rs.getString("s.username"));
-			returnStaff.getStaff().setLastName(rs.getString("name"));
-			returnStaff.getAddress().setPhone(rs.getString("a.phone"));
-			returnStaff.getCountry().setCountry(rs.getString("address"));
-			returnStaff.getStaff().setEmail(rs.getString("s.email"));
+			join.getStaff().setUserName(rs.getString("s.username"));
+			join.getStaff().setLastName(rs.getString("name"));
+			join.getAddress().setPhone(rs.getString("a.phone"));
+			join.getCountry().setCountry(rs.getString("address"));
+			join.getStaff().setEmail(rs.getString("s.email"));
 			
 			
-			list.add(returnStaff);
+			list.add(join);
 		}
 		
 		stmt.close();
