@@ -42,4 +42,32 @@ public class FilmDao implements IFilmDao{
 		
 		return list;
 	}
+	
+	@Override	// 영화 제고 관리 리스트 출력 Dao
+	public List<JoinToTable> selectFilmPromotionList(Connection conn) throws Exception{
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
+		filmQuary = new FilmQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(filmQuary.SELECT_FILM_PROMOTION_LIST);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			JoinToTable join = new JoinToTable();
+			join.setFilmList(new FilmList());
+			join.setFilm(new Film());
+			join.setLanguage(new Language());
+			
+			join.getFilmList().setCategory(rs.getString("fl.category"));
+			join.getFilm().setTitle(rs.getString("f.title"));
+			join.getLanguage().setName(rs.getString("l.name"));
+			join.getFilm().setRating(rs.getString("f.rating"));
+			join.getFilm().setFilmId(rs.getInt("COUNT(*)"));	// 재고수 
+			
+			list.add(join);
+		}
+		
+		stmt.close();
+		
+		return list;
+	}
 }

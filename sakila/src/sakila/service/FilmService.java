@@ -17,6 +17,7 @@ public class FilmService {
 	
 	private DBUtil dbUtil;
 	
+	// 영화 목록을 가져옴
 	public List<JoinToTable> getFilmList() {
 		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		dbUtil = new DBUtil();
@@ -39,6 +40,33 @@ public class FilmService {
 			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
 		}
 		
+		
+		return list;
+	}
+	
+	// 영화 재고 목록을 가져옴
+	public List<JoinToTable> getFilmPromotionList() {
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
+		dbUtil = new DBUtil();
+			
+		Connection conn = null;
+			
+		try {
+			conn = dbUtil.getConnection();
+			conn.setAutoCommit(false);
+				
+			list = iFilmDao.selectFilmPromotionList(conn);
+			System.out.println(list + ": FilmPromotionService stmt 출력");
+				
+			conn.commit();
+		} catch (Exception e) {
+			System.out.println("FilmService 예외 발생");
+			e.printStackTrace();
+			try {conn.rollback();} catch (Exception e2) {e2.printStackTrace();}
+		} finally {
+			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
+		}
+			
 		
 		return list;
 	}
