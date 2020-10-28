@@ -22,7 +22,7 @@
 						
 						<table id="staff">
 							<tr>
-								<td rowspan="2"><a href="/sakila/StaffServlet" class='fas fa-user-circle' style='font-size:60px'></a></td>
+								<td rowspan="2"><a href="/sakila/auth/StaffServlet" class='fas fa-user-circle' style='font-size:60px'></a></td>
 								<td>서울 지점</td>
 							</tr>
 							

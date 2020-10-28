@@ -14,7 +14,7 @@ import sakila.dao.StaffDao;
 import sakila.service.StaffService;
 import sakila.vo.JoinToTable;
 
-@WebServlet("/StaffServlet")
+@WebServlet("/auth/StaffServlet")
 public class StaffServlet extends HttpServlet {
 	private StaffService staffService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
