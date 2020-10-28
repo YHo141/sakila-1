@@ -14,7 +14,7 @@ import sakila.dao.FilmDao;
 import sakila.service.FilmService;
 import sakila.vo.JoinToTable;
 
-@WebServlet("/PromotionServlet")
+@WebServlet("/auth/PromotionServlet")
 public class PromotionServlet extends HttpServlet {
 	private FilmService filmService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

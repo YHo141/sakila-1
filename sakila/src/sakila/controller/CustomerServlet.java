@@ -14,7 +14,7 @@ import sakila.dao.CustomerDao;
 import sakila.service.CustomerService;
 import sakila.vo.JoinToTable;
 
-@WebServlet("/CustomerServlet")
+@WebServlet("/auth/CustomerServlet")
 public class CustomerServlet extends HttpServlet {
 	private CustomerService customerService;
 	

@@ -41,19 +41,19 @@
 						
 						<ul class="linkedList">
 							<li class="line">
-								<a href="${pageContext.request.contextPath}/IndexServlet">홈</a>
+								<a href="${pageContext.request.contextPath}/auth/IndexServlet">홈</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/RentalServlet">영화 반납</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">영화 반납</a>
 							</li>
 							<li class="line">
-								<a href="${pageContext.request.contextPath}/CustomerServlet">회원목록 관리</a>
+								<a href="${pageContext.request.contextPath}/auth/CustomerServlet">회원목록 관리</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/FilmServlet">영화목록 관리</a>
+								<a href="${pageContext.request.contextPath}/auth/FilmServlet">영화목록 관리</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/PromotionServlet">영화재고 관리</a>
+								<a href="${pageContext.request.contextPath}/auth/PromotionServlet">영화재고 관리</a>
 							</li>
 							<li>
 								<a href="#">영화배우 관리</a>

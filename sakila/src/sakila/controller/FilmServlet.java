@@ -14,7 +14,7 @@ import sakila.dao.FilmDao;
 import sakila.service.FilmService;
 import sakila.vo.JoinToTable;
 
-@WebServlet("/FilmServlet")
+@WebServlet("/auth/FilmServlet")
 public class FilmServlet extends HttpServlet {
 	
 	private FilmService filmService;

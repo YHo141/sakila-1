@@ -15,7 +15,7 @@ import sakila.service.RentalService;
 import sakila.vo.JoinToTable;
 
 
-@WebServlet("/RentalServlet")
+@WebServlet("/auth/RentalServlet")
 public class RentalServlet extends HttpServlet {
 	private RentalService rentalService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
