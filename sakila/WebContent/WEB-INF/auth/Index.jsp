@@ -44,7 +44,7 @@
 								<a href="${pageContext.request.contextPath}/IndexServlet">홈</a>
 							</li>
 							<li>
-								<a href="#">영화 반납</a>
+								<a href="${pageContext.request.contextPath}/RentalServlet">영화 반납</a>
 							</li>
 							<li class="line">
 								<a href="#">회원목록 관리</a>
