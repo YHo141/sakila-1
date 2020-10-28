@@ -15,7 +15,7 @@ import sakila.vo.Rental;
 public class CustomerDao implements ICustomerDao{
 	private CustomerQuary customerQuary;
 	
-	// 회원 목록 페이지 출력 Dao 
+	@Override // 회원 목록 페이지 출력 Dao 
 	public List<JoinToTable> selectCustomerList(Connection conn) throws Exception{
 		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		

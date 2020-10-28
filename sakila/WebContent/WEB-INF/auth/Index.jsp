@@ -50,7 +50,7 @@
 								<a href="${pageContext.request.contextPath}/CustomerServlet">회원목록 관리</a>
 							</li>
 							<li>
-								<a href="#">영화재고 관리</a>
+								<a href="${pageContext.request.contextPath}/FilmServlet">영화재고 관리</a>
 							</li>
 							<li>
 								<a href="#">영화배우 관리</a>

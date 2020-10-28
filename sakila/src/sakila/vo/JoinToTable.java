@@ -8,6 +8,8 @@ public class JoinToTable {
 	private Rental rental;
 	private Customer customer;
 	private Staff staff;
+	private FilmList filmList;
+	private Language language;
 	
 	public Address getAddress() {
 		return address;
@@ -51,10 +53,23 @@ public class JoinToTable {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
+	public FilmList getFilmList() {
+		return filmList;
+	}
+	public void setFilmList(FilmList filmList) {
+		this.filmList = filmList;
+	}
+	public Language getLanguage() {
+		return language;
+	}
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
 	
 	@Override
 	public String toString() {
 		return "JoinToTable [address=" + address + ", film=" + film + ", city=" + city + ", country=" + country
-				+ ", rental=" + rental + ", customer=" + customer + ", staff=" + staff + "]";
+				+ ", rental=" + rental + ", customer=" + customer + ", staff=" + staff + ", filmList=" + filmList
+				+ ", language=" + language + "]";
 	}
 }
