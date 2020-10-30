@@ -10,70 +10,24 @@
         <link href="/sakila/sakilaStyle.css" rel="stylesheet" type="text/css" />
         <link href="http://fonts.googleapis.com/css?family=Arvo" rel="stylesheet" type="text/css" />
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
 		<div id="bg">
 			<div id="outer">
 				<div id="main">
-					<div id="sidebar">
-						<h3>
-							Sakila Movie
-						</h3>
-						
-						<table id="staff">
-							<tr>
-								<td rowspan="2"><a href="/sakila/auth/StaffServlet" class='fas fa-user-circle' style='font-size:60px'></a></td>
-								<td>서울 지점</td>
-							</tr>
-							
-							<tr>
-								<td>*** 관리자님</td>
-							</tr>
-						</table>
-						
-						<div>
-							<button type="button" id="logout">logout</button>
-						</div>
-						
-						<h3>
-							Menu
-						</h3>
-						
-						<ul class="linkedList">
-							<li class="line">
-								<a href="${pageContext.request.contextPath}/auth/IndexServlet">홈</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/auth/RentalServlet">영화 반납</a>
-							</li>
-							<li class="line">
-								<a href="${pageContext.request.contextPath}/auth/CustomerServlet">회원목록 관리</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/auth/FilmServlet">영화목록 관리</a>
-							</li>
-							<li>
-								<a href="${pageContext.request.contextPath}/auth/PromotionServlet">영화재고 관리</a>
-							</li>
-							<li>
-								<a href="#">영화배우 관리</a>
-							</li>
-							<li>
-								<a href="#">영화 출연배우 등록</a>
-							</li>
-							<li class="line">
-								<a href="#">매장 통계</a>
-							</li>
-							<li class="last">
-								<a href="#">MVP</a>
-							</li>
-						</ul>
-					</div>
+				
+					<jsp:include page="/inc/menu.jsp"></jsp:include>
 					
 					<div id="content">
 							<h2>Film Return</h2>
 							
-							<table>
+							<div id="contentSearch">
+								<input type="text">
+								<a href="">검색</a>	
+							</div>
+							
+							<table id="contentTable">
 								<thead>	
 									<tr>
 										<th>rental_id</th>
@@ -96,7 +50,18 @@
 									</c:forEach>
 								</tbody>
 							</table>
-								
+							
+							<div id="paging">
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">1</a>
+								<a>...</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">1</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">2</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">3</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">4</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet">5</a>
+								<a>...</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${lastPage}">end</a>
+							</div>
 							
 						<br class="clear" />
 					</div>
@@ -113,3 +78,13 @@
 		</div>
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+

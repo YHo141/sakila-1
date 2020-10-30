@@ -75,7 +75,7 @@ ul {
 }
 
 #copyright {
-	margin: 15px 0 0 0;
+	margin: -30px 0 0 0;
 	text-align: center;
 	color: #707070;
 	font-size: 0.9em;
@@ -169,4 +169,94 @@ ul {
 	width: 100%;
 	text-align:right;
 	font-size: 15px;
+}
+
+#contentTable {
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+
+}
+#contentTable thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #369;
+    border-bottom: 3px solid #036;
+}
+#contentTable tbody td {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: middle;
+    border-bottom: 1px solid #ccc;
+    background: #ffffff;
+}
+#contentTable td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+#contentTable button{
+	background-color: #369;
+	color:#ffffff;
+    border: none;
+    border-radius:4px;
+    font-weight: bold;
+    width:60%;
+    padding: 3% 0;
+}
+
+#contentSearch{
+	text-align: right;
+	margin: 0px 0 20px 0;
+}
+
+#contentSearch input{
+	width:250px;
+    padding: 6px 0;
+    margin: 0px 15px 0px 0;
+}
+
+#contentSearch a{
+	width:60px;
+    background-color: #369;
+    border: none;
+    color:#fff;
+    padding: 4px 0;
+    text-align: center;
+    text-decoration: none;
+    border-radius:4px;
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 4px;
+    cursor: pointer;
+}
+
+#paging{
+	text-align:center;
+	vertical-align: middle;
+	font-size:19px;
+	margin: 33px 0px 0px 0;
+}
+
+#paging a{
+	margin: 0px 15px 0px 0;
+	text-decoration: none;
+	color:#369;
+    cursor: pointer;
+}
+
+#paging .currentPage{
+	display: inline-block;
+	width:35px;
+	padding: 2px 0;
+
+	background-color: #369;
+	color:#fff;
+
+	border-radius:4px;
 }

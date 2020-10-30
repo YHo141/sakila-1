@@ -6,5 +6,7 @@ import java.util.List;
 import sakila.vo.JoinToTable;
 
 public interface IRentalDao {
-	List<JoinToTable> selectFilmReturnList(Connection conn) throws Exception;
+	List<JoinToTable> selectFilmReturnList(Connection conn, int currentPage, int limitPage) throws Exception;
+	
+	int selectFilmReturnListCount(Connection conn) throws Exception;
 }

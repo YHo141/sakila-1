@@ -15,11 +15,13 @@ public class RentalDao implements IRentalDao{
 	private RentalQuary rentalQuary;
 	
 	@Override	// 영화 반납 페이지 리스트 출력
-	public List<JoinToTable> selectFilmReturnList(Connection conn) throws Exception{
+	public List<JoinToTable> selectFilmReturnList(Connection conn, int currentPage, int limitPage) throws Exception{
 		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		rentalQuary = new RentalQuary();
 		
 		PreparedStatement stmt = conn.prepareStatement(rentalQuary.SELECT_FILM_RETURN_LIST);
+		stmt.setInt(1, currentPage);
+		stmt.setInt(2, limitPage);
 		System.out.println(stmt + ": rentalDao stmt 확인");
 		
 		ResultSet rs = stmt.executeQuery(); 
@@ -37,8 +39,25 @@ public class RentalDao implements IRentalDao{
 			list.add(join);
 		}
 		
+		rs.close();
 		stmt.close();
 		
 		return list;
+	}
+	
+	@Override	// 영화 반납 페이지 전체 count
+	public int selectFilmReturnListCount(Connection conn) throws Exception{
+		rentalQuary = new RentalQuary();
+		
+		int returnCount = 0;
+		
+		PreparedStatement stmt = conn.prepareStatement(rentalQuary.SELECT_FILM_RETURN_LIST_COUNT);
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			returnCount = rs.getInt("cnt");
+		}
+
+		return returnCount;
 	}
 }
