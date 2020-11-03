@@ -23,8 +23,10 @@
 							<h2>Film Return</h2>
 							
 							<div id="contentSearch">
-								<input type="text">
-								<a href="">검색</a>	
+								<form method="post" action="${pageContext.request.contextPath}/auth/RentalServlet">
+									<input name="searchTitle" type="text" placeholder=" Please Enter film_title">
+									<button type="submit">검색</button>
+								</form>
 							</div>
 							
 							<table id="contentTable">

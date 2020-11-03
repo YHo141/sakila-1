@@ -15,7 +15,6 @@ import sakila.dao.RentalDao;
 import sakila.service.RentalService;
 import sakila.vo.JoinToTable;
 
-
 @WebServlet("/auth/RentalServlet")
 public class RentalServlet extends HttpServlet {
 	private RentalService rentalService;
@@ -33,7 +32,7 @@ public class RentalServlet extends HttpServlet {
 		List<JoinToTable> list = (List<JoinToTable>)map.get("list");
 		int lastPage = (Integer)map.get("lastPage");
 		
-		System.out.println(currentPage + ": 현재 패이지 확인");
+		// System.out.println(currentPage + ": 현재 패이지 확인");
 		
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("lastPage", lastPage);

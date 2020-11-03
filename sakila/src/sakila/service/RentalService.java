@@ -37,11 +37,11 @@ public class RentalService {
 				lastPage = lastPage / limitPage;
 			}
 			
-			System.out.println(list + "RentalService의 list 확인");
-			System.out.println(lastPage + "RentalService의 lastPage 확인");
+			// System.out.println(list + "RentalService의 list 확인");
+			// System.out.println(lastPage + "RentalService의 lastPage 확인");
 			
 			map.put("list", list);
-			map.put("lastPage", lastPage);
+			map.put("lastPage", lastPage + 1);
 			
 			conn.commit();
 		} catch (Exception e) {
