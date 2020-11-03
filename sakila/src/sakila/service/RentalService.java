@@ -19,8 +19,11 @@ public class RentalService {
 	
 	private DBUtil dbUtil;
 	
-	public Map<String, Object> getFilmRentalList(int currentPage, int limitPage) {
+	public Map<String, Object> getFilmRentalList(int currentPage, int limitPage, String searchTitle) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		List<JoinToTable> list = new ArrayList<JoinToTable>();
+		int lastPage = 0;
+		
 		dbUtil = new DBUtil();
 		
 		Connection conn = null;
@@ -29,16 +32,23 @@ public class RentalService {
 			conn = dbUtil.getConnection();
 			conn.setAutoCommit(false);
 			
-			List<JoinToTable> list = iRentalDao.selectFilmReturnList(conn, currentPage, limitPage);
-			int lastPage = iRentalDao.selectFilmReturnListCount(conn);
+			if(searchTitle.equals("")) {
+				list = iRentalDao.selectFilmReturnList(conn, currentPage, limitPage);
+				lastPage = iRentalDao.selectFilmReturnListCount(conn);
+				System.out.println(list + "RentalService의 list 확인");
+				System.out.println(lastPage + "RentalService의 lastPage 확인");
+			} else {
+				list = iRentalDao.selectFilmReturnListByTitle(conn, currentPage, limitPage, searchTitle);
+				lastPage = iRentalDao.selectFilmReturnListByTitleCount(conn, searchTitle);
+				System.out.println(list + "RentalService의 list 확인");
+				System.out.println(lastPage + "RentalService의 lastPage 확인");
+			}
+			
 			if(lastPage % limitPage == 0) {
 				lastPage = lastPage / limitPage - 1;
 			} else {
 				lastPage = lastPage / limitPage;
 			}
-			
-			// System.out.println(list + "RentalService의 list 확인");
-			// System.out.println(lastPage + "RentalService의 lastPage 확인");
 			
 			map.put("list", list);
 			map.put("lastPage", lastPage + 1);

@@ -21,6 +21,7 @@ public class RentalServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		rentalService = new RentalService(new RentalDao());
 		
+		String searchTitle = "";
 		int currentPage = 1;
 		int limitPage = 10;
 		
@@ -28,7 +29,11 @@ public class RentalServlet extends HttpServlet {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		Map<String, Object> map = rentalService.getFilmRentalList(currentPage, limitPage);
+		if(request.getParameter("searchTitle") != null) {
+			searchTitle = request.getParameter("searchTitle");
+		}
+		
+		Map<String, Object> map = rentalService.getFilmRentalList(currentPage, limitPage, searchTitle);
 		List<JoinToTable> list = (List<JoinToTable>)map.get("list");
 		int lastPage = (Integer)map.get("lastPage");
 		
@@ -36,12 +41,37 @@ public class RentalServlet extends HttpServlet {
 		
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("lastPage", lastPage);
+		request.setAttribute("searchTitle", searchTitle);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/auth/filmReturn/filmReturnList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		rentalService = new RentalService(new RentalDao());
+		
+		String searchTitle = "";
+		int currentPage = 1;
+		int limitPage = 10;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		if(request.getParameter("searchTitle") != null) {
+			searchTitle = request.getParameter("searchTitle");
+		}
+		
+		Map<String, Object> map = rentalService.getFilmRentalList(currentPage, limitPage, searchTitle);
+		List<JoinToTable> list = (List<JoinToTable>)map.get("list");
+		int lastPage = (Integer)map.get("lastPage");
+		
+		// System.out.println(currentPage + ": 현재 패이지 확인");
+		
+		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("lastPage", lastPage);
+		request.setAttribute("searchTitle", searchTitle);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/WEB-INF/auth/filmReturn/filmReturnList.jsp").forward(request, response);
 	}
 
 }

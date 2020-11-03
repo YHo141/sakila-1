@@ -24,7 +24,7 @@
 							
 							<div id="contentSearch">
 								<form method="post" action="${pageContext.request.contextPath}/auth/RentalServlet">
-									<input name="searchTitle" type="text" placeholder=" Please Enter film_title">
+									<input name="searchTitle" value="${searchTitle}" type="text" placeholder=" Please Enter film_title">
 									<button type="submit">검색</button>
 								</form>
 							</div>
@@ -54,53 +54,54 @@
 							</table>
 							
 							<div id="paging">
-								<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=1">1</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=1&searchTitle=${searchTitle}">1</a>
 								<a>...</a>
 								
 								<c:if test="${currentPage < lastPage - 2 && currentPage > 3}">
 									<c:forEach var="i" begin="${currentPage-2}" end="${currentPage+2}">
 										<c:choose>
 											<c:when test="${i eq currentPage}">
-												 <a class="currentPage" href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}">${i}</a>
+												 <a class="currentPage" href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}&searchTitle=${searchTitle}">${i}</a>
 											</c:when>
 											
 											<c:otherwise>
-												<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}">${i}</a>
+												<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}&searchTitle=${searchTitle}">${i}</a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
 								</c:if>
 								
-								<c:if test="${currentPage <= 3}">
+								<c:if test="${currentPage <= 3 && lastPage > 3}">
 									<c:forEach var="i" begin="1" end="5">
 										<c:choose>
 											<c:when test="${i eq currentPage}">
-												 <a class="currentPage" href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}">${i}</a>
+												 <a class="currentPage" href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}&searchTitle=${searchTitle}">${i}</a>
 											</c:when>
 											
 											<c:otherwise>
-												<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}">${i}</a>
+												<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}&searchTitle=${searchTitle}">${i}</a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
 								</c:if>
 								
-								<c:if test="${currentPage >= lastPage - 2}">
+								
+								<c:if test="${currentPage >= lastPage - 2 && lastPage - 4 > 0}">
 									<c:forEach var="i" begin="${lastPage-4}" end="${lastPage}">
 										<c:choose>
 											<c:when test="${i eq currentPage}">
-												 <a class="currentPage" href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}">${i}</a>
+												 <a class="currentPage" href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}&searchTitle=${searchTitle}">${i}</a>
 											</c:when>
 											
 											<c:otherwise>
-												<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}">${i}</a>
+												<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${i}&searchTitle=${searchTitle}">${i}</a>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>
 								</c:if>
 								
 								<a>...</a>
-								<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${lastPage}">end</a>
+								<a href="${pageContext.request.contextPath}/auth/RentalServlet?currentPage=${lastPage}&searchTitle=${searchTitle}">end</a>
 							</div>
 							
 						<br class="clear" />
