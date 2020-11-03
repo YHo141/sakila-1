@@ -20,7 +20,7 @@ public class RentalDao implements IRentalDao{
 		rentalQuary = new RentalQuary();
 		
 		PreparedStatement stmt = conn.prepareStatement(rentalQuary.SELECT_FILM_RETURN_LIST);
-		stmt.setInt(1, currentPage);
+		stmt.setInt(1, currentPage*limitPage);
 		stmt.setInt(2, limitPage);
 		System.out.println(stmt + ": rentalDao stmt 확인");
 		
@@ -57,6 +57,7 @@ public class RentalDao implements IRentalDao{
 		if(rs.next()) {
 			returnCount = rs.getInt("cnt");
 		}
+		System.out.println(returnCount + ": lastPage 확인");
 
 		return returnCount;
 	}
