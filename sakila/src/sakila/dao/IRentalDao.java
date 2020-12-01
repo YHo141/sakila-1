@@ -13,4 +13,6 @@ public interface IRentalDao {
 	List<JoinToTable> selectFilmReturnListByTitle(Connection conn, int currentPage, int limitPage, String searchTitle) throws Exception;
 	
 	int selectFilmReturnListByTitleCount(Connection conn, String searchTitle) throws Exception;
+	
+	void updateRentalReturnDate(Connection conn, int rentalId) throws Exception;
 }

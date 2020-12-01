@@ -64,4 +64,47 @@ public class RentalService {
 		
 		return map;
 	}
+	
+	public void getUpdateRentalReturnDate(int rentalId) {
+		dbUtil = new DBUtil();
+		Connection conn = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			iRentalDao.updateRentalReturnDate(conn, rentalId);
+			
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {conn.rollback();} catch (Exception e2) {e2.printStackTrace();}
+		} finally {
+			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

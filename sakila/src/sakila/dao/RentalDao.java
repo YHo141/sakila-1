@@ -34,7 +34,8 @@ public class RentalDao implements IRentalDao{
 			join.getRental().setRentalId(rs.getInt("r.rental_id"));
 			join.getFilm().setTitle(rs.getString("f.title"));
 			join.getFilm().setRentalDuration(rs.getInt("f.rental_duration"));
-			join.getRental().setRentalDate(rs.getString("r.rental_date"));
+			join.getRental().setRentalDate(rs.getString("return_date"));
+			join.getRental().setReturnDate(rs.getString("r.return_date"));
 			
 			list.add(join);
 		}
@@ -65,7 +66,7 @@ public class RentalDao implements IRentalDao{
 		return returnCount;
 	}
 	
-	@Override	// 영화 반납 페이지 리스트 출력
+	@Override	// 영화 반납 페이지 리스트 조건을 받아서 출력
 	public List<JoinToTable> selectFilmReturnListByTitle(Connection conn, int currentPage, int limitPage, String searchTitle) throws Exception{
 		List<JoinToTable> list = new ArrayList<JoinToTable>();
 		rentalQuary = new RentalQuary();
@@ -86,7 +87,8 @@ public class RentalDao implements IRentalDao{
 			join.getRental().setRentalId(rs.getInt("r.rental_id"));
 			join.getFilm().setTitle(rs.getString("f.title"));
 			join.getFilm().setRentalDuration(rs.getInt("f.rental_duration"));
-			join.getRental().setRentalDate(rs.getString("r.rental_date"));
+			join.getRental().setRentalDate(rs.getString("return_date"));
+			join.getRental().setReturnDate(rs.getString("r.return_date"));
 			
 			list.add(join);
 		}
@@ -117,4 +119,36 @@ public class RentalDao implements IRentalDao{
 
 		return returnCount;
 	}
+	
+	@Override
+	public void updateRentalReturnDate(Connection conn, int rentalId) throws Exception {
+		rentalQuary = new RentalQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(rentalQuary.UPDATE_RENTAL_RETURN_DATE);
+		stmt.setInt(1, rentalId);
+		
+		stmt.executeLargeUpdate();
+		
+		stmt.close();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

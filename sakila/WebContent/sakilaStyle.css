@@ -172,6 +172,7 @@ ul {
 }
 
 #contentTable {
+	width: 100%;
     border-collapse: collapse;
     text-align: center;
     line-height: 1.5;
@@ -200,13 +201,20 @@ ul {
 }
 
 #contentTable button{
-	background-color: #369;
 	color:#ffffff;
     border: none;
     border-radius:4px;
     font-weight: bold;
     width:60%;
     padding: 3% 0;
+}
+
+#contentTable .green{
+	background-color: #369;
+}
+
+#contentTable .black{
+	background-color: #000000;
 }
 
 #contentSearch{
