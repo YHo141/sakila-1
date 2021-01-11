@@ -229,6 +229,12 @@ ul {
     text-align:center;
 }
 
+#contentSearch select{
+	width:120px;
+    padding: 6px 0;
+    margin: 0px 7px 0px 0;
+}
+
 #contentSearch button{
 	width:60px;
     background-color: #369;

@@ -36,11 +36,6 @@ public class LoginServlet extends HttpServlet {
 		Stats stats = (Stats)(map.get("stats"));
 		int sumCnt = (Integer)(map.get("sumCnt"));
 		
-		// 최종 확인
-		System.out.println(stats + "<--- 최종");
-		System.out.println(sumCnt + "<--- 최종");
-		
-		
 		request.setAttribute("stats", stats);
 		request.setAttribute("sumCount", sumCnt);	
 		

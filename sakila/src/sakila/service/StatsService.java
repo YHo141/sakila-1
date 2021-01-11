@@ -34,10 +34,8 @@ public class StatsService {
 		try {
 			conn = dbUtil.getConnection();
 			conn.setAutoCommit(false);
-			System.out.println(conn + "<-- service(countStats) conn");
 			
 			String day = dayUtil.getDay();
-			System.out.println(day + ": service(countStats) day°ª");
 			
 			Stats stats = new Stats();
 			stats.setDay(day);

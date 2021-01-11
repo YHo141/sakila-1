@@ -39,7 +39,7 @@
 								<a href="${pageContext.request.contextPath}/auth/FilmServlet">영화목록 관리</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/auth/PromotionServlet">영화재고 관리</a>
+								<a href="${pageContext.request.contextPath}/auth/promotionServlet">영화재고 관리</a>
 							</li>
 							<li>
 								<a href="${pageContext.request.contextPath}/auth/ActorServlet">영화배우 관리</a>
