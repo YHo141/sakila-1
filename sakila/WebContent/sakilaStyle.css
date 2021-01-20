@@ -132,7 +132,8 @@ ul {
 }
 
 #sidebar a {
-	color: #42454;
+	color: #424544;
+	text-decoration:none;
 }
 
 #sidebar h2, #sidebar h3, #sidebar h4 {
@@ -217,6 +218,37 @@ ul {
 	background-color: #000000;
 }
 
+#addTable {
+	width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+
+}
+#addTable th {
+    width: 40%;
+    font-weight: bold;
+    vertical-align: middle;
+    color: #369;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#addTable td {
+    width: 60%;
+    padding: 10px;
+    vertical-align: middle;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#addTable input[type=text]{
+	width:100%;
+	padding:5px;
+	height:30px;
+	font-size: 20px;
+}
+
 #contentSearch{
 	text-align: right;
 	margin: 0px 0 20px 0;
@@ -241,6 +273,23 @@ ul {
     border: none;
     color:#fff;
     padding: 4px 0;
+    text-align: center;
+    border-radius:4px;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 4px;
+    cursor: pointer;
+}
+
+#contentSearch2{
+	float:left;
+}
+
+#contentSearch2 button{
+    background-color: #369;
+    border: none;
+    color:#fff;
+    padding: 4px 2px;
     text-align: center;
     border-radius:4px;
     font-size: 17px;

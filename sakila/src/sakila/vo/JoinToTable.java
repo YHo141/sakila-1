@@ -3,6 +3,7 @@ package sakila.vo;
 public class JoinToTable {
 	private Address address;
 	private Film film;
+	private Actor actor;
 	private City city;
 	private Country country;
 	private Rental rental;
@@ -11,6 +12,12 @@ public class JoinToTable {
 	private FilmList filmList;
 	private Language language;
 	
+	public Actor getActor() {
+		return actor;
+	}
+	public void setActor(Actor actor) {
+		this.actor = actor;
+	}
 	public Address getAddress() {
 		return address;
 	}
@@ -68,8 +75,8 @@ public class JoinToTable {
 	
 	@Override
 	public String toString() {
-		return "JoinToTable [address=" + address + ", film=" + film + ", city=" + city + ", country=" + country
-				+ ", rental=" + rental + ", customer=" + customer + ", staff=" + staff + ", filmList=" + filmList
-				+ ", language=" + language + "]";
+		return "JoinToTable [address=" + address + ", film=" + film + ", actor=" + actor + ", city=" + city
+				+ ", country=" + country + ", rental=" + rental + ", customer=" + customer + ", staff=" + staff
+				+ ", filmList=" + filmList + ", language=" + language + "]";
 	}
 }
