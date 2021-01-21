@@ -91,7 +91,11 @@
     	}
     	
     	$('#btnResult').click(function(){
-    		location.href='${path}/auth/starringActorOneAddServlet?list=' + list + '&filmId=${filmId}';
+    		if(list.length == 0){
+    			alert('추가된 배우가 없습니다.');
+    		} else{
+    			location.href='${path}/auth/starringActorOneAddServlet?list=' + list + '&filmId=${filmId}';    			
+    		}
     	});
     </script>
 </html>
