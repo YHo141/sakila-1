@@ -11,6 +11,7 @@ public class JoinToTable {
 	private Staff staff;
 	private FilmList filmList;
 	private Language language;
+	private Category category;
 	
 	public Actor getActor() {
 		return actor;
@@ -72,11 +73,16 @@ public class JoinToTable {
 	public void setLanguage(Language language) {
 		this.language = language;
 	}
-	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	@Override
 	public String toString() {
 		return "JoinToTable [address=" + address + ", film=" + film + ", actor=" + actor + ", city=" + city
 				+ ", country=" + country + ", rental=" + rental + ", customer=" + customer + ", staff=" + staff
-				+ ", filmList=" + filmList + ", language=" + language + "]";
+				+ ", filmList=" + filmList + ", language=" + language + ", category=" + category + "]";
 	}
 }

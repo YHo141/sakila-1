@@ -45,7 +45,7 @@
 								<a href="${pageContext.request.contextPath}/auth/actorServlet">영화배우 관리</a>
 							</li>
 							<li>
-								<a href="#">영화 출연배우 등록</a>
+								<a href="${pageContext.request.contextPath}/auth/starringActorServlet">영화 출연배우 등록</a>
 							</li>
 							<li class="line">
 								<a href="#">매장 통계</a>
