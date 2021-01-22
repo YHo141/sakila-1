@@ -48,7 +48,7 @@
 								<a href="${pageContext.request.contextPath}/auth/starringActorServlet">영화 출연배우 등록</a>
 							</li>
 							<li class="line">
-								<a href="#">매장 통계</a>
+								<a href="${pageContext.request.contextPath}/auth/statisticsServlet?staffId=${loginStaff}">매장 통계</a>
 							</li>
 							<li class="last">
 								<a href="#">MVP</a>
