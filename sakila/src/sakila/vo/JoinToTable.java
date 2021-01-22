@@ -12,6 +12,7 @@ public class JoinToTable {
 	private FilmList filmList;
 	private Language language;
 	private Category category;
+	private Payment payment;
 	
 	public Actor getActor() {
 		return actor;
@@ -79,10 +80,18 @@ public class JoinToTable {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	
 	@Override
 	public String toString() {
 		return "JoinToTable [address=" + address + ", film=" + film + ", actor=" + actor + ", city=" + city
 				+ ", country=" + country + ", rental=" + rental + ", customer=" + customer + ", staff=" + staff
-				+ ", filmList=" + filmList + ", language=" + language + ", category=" + category + "]";
+				+ ", filmList=" + filmList + ", language=" + language + ", category=" + category + ", payment="
+				+ payment + "]";
 	}
 }

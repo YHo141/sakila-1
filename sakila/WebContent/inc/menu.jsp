@@ -51,7 +51,7 @@
 								<a href="${pageContext.request.contextPath}/auth/statisticsServlet?staffId=${loginStaff}">매장 통계</a>
 							</li>
 							<li class="last">
-								<a href="#">MVP</a>
+								<a href="${pageContext.request.contextPath}/auth/mvpServlet">MVP</a>
 							</li>
 						</ul>
 					</div>
