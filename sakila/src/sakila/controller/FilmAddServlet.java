@@ -40,8 +40,9 @@ public class FilmAddServlet extends HttpServlet {
 		float rentalRate = Float.parseFloat(request.getParameter("rentalRate"));
 		int length = Integer.parseInt(request.getParameter("length"));
 		String rating = request.getParameter("rating");
+		int storeId = Integer.parseInt(request.getParameter("storeId"));
 		
-		filmService.addFilmAction(title, description, languageId, categoryId, rentalRate, length, rating);
+		filmService.addFilmAction(title, description, languageId, categoryId, rentalRate, length, rating, storeId);
 		
 		response.sendRedirect("filmServlet");
 	}

@@ -14,14 +14,14 @@ import sakila.dao.StaffDao;
 import sakila.service.StaffService;
 import sakila.vo.JoinToTable;
 
-@WebServlet("/auth/StaffServlet")
+@WebServlet("/auth/staffServlet")
 public class StaffServlet extends HttpServlet {
 	private StaffService staffService;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();	
 		Object ob = session.getAttribute("loginStaff");
 		int staffId = (Integer)ob;
-		System.out.println(staffId);
+		//System.out.println(staffId);
 		
 		staffService = new StaffService(new StaffDao());
 		List<JoinToTable> list = staffService.getStaff(staffId);
@@ -33,6 +33,15 @@ public class StaffServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		staffService = new StaffService(new StaffDao());
+		
+		int staffId = Integer.parseInt(request.getParameter("staffId"));
+		String email = request.getParameter("email");
+		String username = request.getParameter("username");
+		String phone = request.getParameter("phone");
+		
+		staffService.modifyStaff(username, email, phone, staffId);
+		
+		response.sendRedirect("staffServlet");
 	}
 }

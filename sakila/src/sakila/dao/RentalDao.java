@@ -31,11 +31,11 @@ public class RentalDao implements IRentalDao{
 			join.setFilm(new Film());
 			join.setRental(new Rental());
 			
-			join.getRental().setRentalId(rs.getInt("r.rental_id"));
-			join.getFilm().setTitle(rs.getString("f.title"));
-			join.getFilm().setRentalDuration(rs.getInt("f.rental_duration"));
-			join.getRental().setRentalDate(rs.getString("return_date"));
-			join.getRental().setReturnDate(rs.getString("r.return_date"));
+			join.getRental().setRentalId(rs.getInt("rentalId"));
+			join.getFilm().setTitle(rs.getString("title"));
+			join.getFilm().setRentalDuration(rs.getInt("rentalDuration"));
+			join.getRental().setRentalDate(rs.getString("rentalDate"));
+			join.getRental().setReturnDate(rs.getString("returnDate"));
 			
 			list.add(join);
 		}

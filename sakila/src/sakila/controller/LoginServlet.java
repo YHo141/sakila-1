@@ -68,11 +68,12 @@ public class LoginServlet extends HttpServlet {
 			int sumCnt = (Integer)(map.get("sumCnt"));
 			
 			// 최종 확인
-			System.out.println(stats + "<--- 최종");
-			System.out.println(sumCnt + "<--- 최종");
+			//System.out.println(stats + "<--- 최종");
+			//System.out.println(sumCnt + "<--- 최종");
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("loginStaff", staffId);
+			session.setAttribute("userName", userName);
 			
 			
 			request.setAttribute("stats", stats);

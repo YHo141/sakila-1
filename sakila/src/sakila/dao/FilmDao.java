@@ -13,6 +13,7 @@ import sakila.vo.Film;
 import sakila.vo.FilmList;
 import sakila.vo.JoinToTable;
 import sakila.vo.Language;
+import sakila.vo.Rental;
 
 public class FilmDao implements IFilmDao{
 	private FilmQuary filmQuary;
@@ -36,6 +37,21 @@ public class FilmDao implements IFilmDao{
 		
 		return filmId;
 	}
+	
+	@Override
+	public void insertFilmInventory(Connection conn, int filmId, int storeId) throws Exception{
+		filmQuary = new FilmQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(filmQuary.INSERT_FILM_INVENTORY);
+		stmt.setInt(1, filmId);
+		stmt.setInt(2, storeId);
+		
+		stmt.executeLargeUpdate();
+		
+		stmt.close();
+		
+	}
+	
 	@Override
 	public void insertFilmCategory(Connection conn, int filmId, int categoryId) throws Exception{
 		filmQuary = new FilmQuary();
@@ -184,6 +200,79 @@ public class FilmDao implements IFilmDao{
 		return list;
 	}
 	
+	@Override
+	public void insertFilmPromotionByRental(Connection conn, Rental rental) throws Exception{
+		filmQuary = new FilmQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(filmQuary.INSERT_FILM_PROMOTION_BY_RENTAL);
+		stmt.setInt(1, rental.getInventoryId());
+		stmt.setInt(2, rental.getCustomerId());
+		stmt.setInt(3, rental.getStaffId());
+		
+		stmt.executeLargeUpdate();
+		
+		stmt.close();
+	}
+	
+	@Override
+	public List<Rental> selectFilmPromotionOneReturn(Connection conn, int filmId) throws Exception{
+		List<Rental> list = new ArrayList<Rental>();
+		filmQuary = new FilmQuary();
+		PreparedStatement stmt = conn.prepareStatement(filmQuary.SELECT_FILM_PROMOTION_ONE_RETURN);
+		stmt.setInt(1, filmId);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			Rental rental = new Rental();
+			rental.setInventoryId(rs.getInt("inventoryId"));
+			rental.setRentalDate(rs.getString("rentalDate"));
+			rental.setCustomerName(rs.getString("name"));
+			rental.setCustomerId(rs.getInt("customerId"));
+			
+			list.add(rental);
+		}
+		
+		stmt.close();
+		rs.close();
+		
+		return list;
+	}
+	
+	@Override
+	public void updateFilmPromotionByReturn(Connection conn, int inventoryId) throws Exception{
+		filmQuary = new FilmQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(filmQuary.UPDATE_FILM_PROMOTION_BY_RETURN);
+		stmt.setInt(1, inventoryId);
+		
+		stmt.executeLargeUpdate();
+		
+		stmt.close();
+	}
+	
+	@Override
+	public List<Rental> selectFilmPromotionOneAll(Connection conn, int filmId) throws Exception{
+		List<Rental> list = new ArrayList<Rental>();
+		filmQuary = new FilmQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(filmQuary.SELECT_FILM_PROMOTION_ONE_ALL);
+		stmt.setInt(1, filmId);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			Rental rental = new Rental();
+			rental.setInventoryId(rs.getInt("inventoryId"));
+			rental.setArrears(rs.getString("title"));
+			
+			list.add(rental);
+		}
+		
+		stmt.close();
+		rs.close();
+		
+		return list;
+	}
+	
 	@Override	// 영화 제고 목록 페이징을 위한  리스트 출력
 	public int selectFilmPromotionCount(Connection conn, String searchTitle) throws Exception{
 		int lastPage = 0;
@@ -217,11 +306,11 @@ public class FilmDao implements IFilmDao{
 			join.setFilm(new Film());
 			join.setLanguage(new Language());
 			
+			join.getFilm().setFilmId(rs.getInt("filmId"));
 			join.getFilmList().setCategory(rs.getString("fl.category"));
 			join.getFilm().setTitle(rs.getString("f.title"));
 			join.getLanguage().setName(rs.getString("l.name"));
 			join.getFilm().setRating(rs.getString("f.rating"));
-			join.getFilm().setFilmId(rs.getInt("COUNT(*)") - 1);	// 재고수 
 			
 			list.add(join);
 		}

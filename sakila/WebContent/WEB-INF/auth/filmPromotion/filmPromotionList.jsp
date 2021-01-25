@@ -41,18 +41,16 @@
 										<th>영화 제목</th>
 										<th>언어</th>
 										<th>시청등급</th>
-										<th>전체 재고수</th>
 									</tr>
 								</thead>
 								
 								<tbody>
 									<c:forEach var="b" items="${list}">
 										<tr>
-											<td>${b.filmList.category}</td>
-											<td>${b.film.title}</td>
-											<td>${b.language.name}</td>
-											<td>${b.film.rating}</td>
-											<td>${b.film.filmId}</td>
+											<td style="width:30%">${b.filmList.category}</td>
+											<td style="width:40%"><button onclick="clickOne('${b.film.filmId}');" type="button" style="color:#6b6b6b;width:100%;height:28px;padding:6px">${b.film.title}</button></td>
+											<td style="width:15%">${b.language.name}</td>
+											<td style="width:15%">${b.film.rating}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -131,6 +129,10 @@
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+    	function clickOne(filmId){
+    		location.href = '${path}/auth/promotionOneServlet?filmId=' + filmId;
+    	}
+    
 	    $("#selectOption").on("propertychange change keyup paste input", function(){
 	    	if($(this).val() == 'all'){
 	    		location.href = '${path}/auth/promotionServlet';

@@ -8,6 +8,9 @@ public class Rental {
 	private String returnDate;
 	private int staffId;
 	private String lastUpdate;
+	private String scheduledReturnDate;
+	private String arrears;
+	private String customerName;
 	
 	public int getRentalId() {
 		return rentalId;
@@ -51,11 +54,29 @@ public class Rental {
 	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
-	
+	public String getScheduledReturnDate() {
+		return scheduledReturnDate;
+	}
+	public void setScheduledReturnDate(String scheduledReturnDate) {
+		this.scheduledReturnDate = scheduledReturnDate;
+	}
+	public String getArrears() {
+		return arrears;
+	}
+	public void setArrears(String arrears) {
+		this.arrears = arrears;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
 	@Override
 	public String toString() {
 		return "Rental [rentalId=" + rentalId + ", rentalDate=" + rentalDate + ", inventoryId=" + inventoryId
 				+ ", customerId=" + customerId + ", returnDate=" + returnDate + ", staffId=" + staffId + ", lastUpdate="
-				+ lastUpdate + "]";
+				+ lastUpdate + ", scheduledReturnDate=" + scheduledReturnDate + ", arrears=" + arrears
+				+ ", customerName=" + customerName + "]";
 	}
 }

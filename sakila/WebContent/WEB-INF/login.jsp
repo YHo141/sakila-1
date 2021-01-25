@@ -13,12 +13,9 @@
 <div class="login">
 	<h1><i class='fas fa-user-alt' style="font-size:80px;"></i></h1>
     <form method="post">
-    	<input type="text" name="staffId" placeholder="Username" required="required" />
-        <input type="password" name="password" placeholder="Password" required="required" />
+    	<input type="text" name="staffId" placeholder="Username" required="required" value="1"/>
+        <input type="password" name="password" placeholder="Password" required="required" value="1234"/>
         <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
-        <div>
-			Today : ${stats.day} (visitant ${stats.cnt}) --- (All : ${sumCount})
-		</div>
     </form>
 </div>
 

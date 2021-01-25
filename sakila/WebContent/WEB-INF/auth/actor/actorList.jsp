@@ -60,7 +60,7 @@
 									</c:if>
 									<c:if test="${fn:length(list) == 0}">
 										<tr>
-											<td colspan="2">해당하는 데이터가 없습니다.</td>
+											<td colspan="3">해당하는 데이터가 없습니다.</td>
 										</tr>
 									</c:if>
 								</tbody>

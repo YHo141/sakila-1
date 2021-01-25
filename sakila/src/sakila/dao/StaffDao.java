@@ -16,6 +16,21 @@ import sakila.vo.Staff;
 public class StaffDao implements IStaffDao{
 	private StaffQuary staffQuary;
 	
+	@Override
+	public void updateStaff(Connection conn, JoinToTable join) throws Exception{
+		staffQuary = new StaffQuary();
+		
+		PreparedStatement stmt = conn.prepareStatement(staffQuary.UPDATE_STAFF);
+		stmt.setString(1, join.getStaff().getUserName());
+		stmt.setString(2, join.getStaff().getEmail());
+		stmt.setString(3, join.getAddress().getPhone());
+		stmt.setInt(4, join.getStaff().getStaffId());
+		
+		stmt.executeLargeUpdate();
+		
+		stmt.close();
+	}
+	
 	@Override	// 사용자 로그인 확인
 	public Staff selectStaffByKey(Connection conn, Staff staff) throws Exception {
 		Staff returnStaff = null;
@@ -24,7 +39,7 @@ public class StaffDao implements IStaffDao{
 		PreparedStatement stmt = conn.prepareStatement(staffQuary.SELECT_STAFF_BY_KEY);
 		stmt.setInt(1, staff.getStaffId());
 		stmt.setString(2, staff.getPassword());
-		System.out.println(stmt + ": staffDao(selectStaffByKey) 쿼리문 확인");
+		//System.out.println(stmt + ": staffDao(selectStaffByKey) 쿼리문 확인");
 		
 		ResultSet rs = stmt.executeQuery();
 		
@@ -34,8 +49,8 @@ public class StaffDao implements IStaffDao{
 			returnStaff.setStaffId(rs.getInt("staff_id"));
 			returnStaff.setUserName(rs.getString("username"));
 			
-			System.out.println(rs.getInt("staff_id"));
-			System.out.println(rs.getString("username"));
+			//System.out.println(rs.getInt("staff_id"));
+			//System.out.println(rs.getString("username"));
 		}
 		
 		stmt.close();
@@ -50,10 +65,10 @@ public class StaffDao implements IStaffDao{
 		
 		PreparedStatement stmt = conn.prepareStatement(staffQuary.SELECT_STAFF);
 		stmt.setInt(1, staffId);
-		System.out.println(stmt + ": staffDao(selectStaffy) 쿼리문 확인");
+		//System.out.println(stmt + ": staffDao(selectStaffy) 쿼리문 확인");
 		
 		ResultSet rs = stmt.executeQuery();
-		System.out.println(rs + ": staffDao(selectStaffy) rs 확인");
+		//System.out.println(rs + ": staffDao(selectStaffy) rs 확인");
 		
 		while(rs.next()) {
 			JoinToTable join = new JoinToTable();

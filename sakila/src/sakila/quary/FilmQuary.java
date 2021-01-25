@@ -10,11 +10,16 @@ public class FilmQuary {
 	public static final String SELECT_FILM_ADD_LANGUAGE = "SELECT name,language_id languageId FROM language";
 	public static final String INSERT_FILM = "INSERT INTO film(title, description, language_id, rental_rate, length, rating) VALUES(?,?,?,?,?,?)";
 	public static final String INSERT_FILM_CATEGORY = "INSERT INTO film_category(film_id, category_id) VALUES(?,?)";
+	public static final String INSERT_FILM_INVENTORY = "INSERT INTO inventory(film_id, store_id) VALUES(?,?)";
 	public static final String SELECT_FILM_CATEGORY_BY_INSERT = "SELECT film_id filmId FROM film WHERE title=? AND description=?";
 	
-	public static final String SELECT_FILM_PROMOTION_LIST = "SELECT fl.category, f.title, l.name, f.rating, COUNT(*) FROM film_list fl  inner join film f on fl.FID = f.film_id inner join language l on l.language_id = f.language_id inner join inventory i on i.film_id = f.film_id inner join rental r on r.inventory_id = i.inventory_id WHERE f.title LIKE ? GROUP BY f.title LIMIT ?, ?";
+	public static final String SELECT_FILM_PROMOTION_LIST = "SELECT f.film_id filmId, fl.category, f.title, l.name, f.rating FROM film_list fl  inner join film f on fl.FID = f.film_id inner join language l on l.language_id = f.language_id inner join inventory i on i.film_id = f.film_id inner join rental r on r.inventory_id = i.inventory_id WHERE f.title LIKE ? GROUP BY f.title LIMIT ?, ?";
 	
 	public static final String SELECT_FILM_PROMOTION_COUNT = "SELECT COUNT(*) FROM film_list fl  inner join film f on fl.FID = f.film_id inner join language l on l.language_id = f.language_id inner join inventory i on i.film_id = f.film_id inner join rental r on r.inventory_id = i.inventory_id WHERE f.title LIKE ? GROUP BY f.title";
+	public static final String SELECT_FILM_PROMOTION_ONE_RETURN = "SELECT i.inventory_id inventoryId, r.rental_date rentalDate, CONCAT(c.last_name, ' ',c.first_name) name, c.customer_Id customerId FROM inventory i INNER JOIN rental r ON i.inventory_id = r.inventory_id LEFT JOIN customer c ON c.customer_id = r.customer_id WHERE i.film_id = ? AND r.return_date IS NULL";
+	public static final String SELECT_FILM_PROMOTION_ONE_ALL = "SELECT i.inventory_id inventoryId, f.title title FROM inventory i LEFT JOIN film f ON i.film_id = f.film_id WHERE i.film_id = ?";
+	public static final String UPDATE_FILM_PROMOTION_BY_RETURN = "UPDATE rental SET return_date = NOW() WHERE inventory_id = ? and return_date IS NULL";
+	public static final String INSERT_FILM_PROMOTION_BY_RENTAL = "INSERT INTO rental(rental_date, inventory_id, customer_id, staff_id) VALUES(NOW(), ?, ?, ?)";
 	
 	public static final String SELECT_FILM_PROMOTION_LIST_NOTNULL = "SELECT fl.category, f.title, l.name, f.rating, COUNT(*) FROM film_list fl  inner join film f on fl.FID = f.film_id inner join language l on l.language_id = f.language_id inner join inventory i on i.film_id = f.film_id inner join rental r on r.inventory_id = i.inventory_id WHERE r.return_date IS NOT NULL AND f.title LIKE ? GROUP BY f.title LIMIT ?, ?";
 	

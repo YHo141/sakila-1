@@ -27,7 +27,10 @@
 							<table id="addTable">
 								<tr>
 									<th>제목</th>
-									<td><input type="text" id="title" name="title"></td>
+									<td>
+										<input type="text" id="title" name="title">
+										<input type="hidden" name="storeId" value="${loginStaff}">
+									</td>
 								</tr>
 								<tr>
 									<th>설명</th>

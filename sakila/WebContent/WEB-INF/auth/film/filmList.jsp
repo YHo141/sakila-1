@@ -42,8 +42,8 @@
 								</select>
 								<input name="searchTitle" value="${searchTitle}" type="text" placeholder=" Please Enter film_title">
 								<button type="submit">검색</button>
-								</form>
-							</div>
+							</form>
+						</div>
 						<table id="contentTable">
 							<thead>
 								<tr>
@@ -114,7 +114,7 @@
 											<c:forEach var="i" begin="${currentPage-2}" end="${currentPage+2}">
 												<c:choose>
 													<c:when test="${i eq currentPage}">
-														<a class="currentPage" href="${path}/auth/starringActorServlet?currentPage=${i}&searchTitle=${searchTitle}&categoryName=${categoryName}">${i}</a>	
+														<a class="currentPage" href="${path}/auth/filmServlet?currentPage=${i}&searchTitle=${searchTitle}&categoryName=${categoryName}">${i}</a>	
 													</c:when>
 													<c:otherwise>
 														<a href="${path}/auth/filmServlet?currentPage=${i}&searchTitle=${searchTitle}&categoryName=${categoryName}">${i}</a>	

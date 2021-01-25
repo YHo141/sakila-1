@@ -14,6 +14,7 @@ import sakila.vo.Film;
 import sakila.vo.FilmList;
 import sakila.vo.JoinToTable;
 import sakila.vo.Language;
+import sakila.vo.Rental;
 
 public class FilmService {
 	private IFilmDao iFilmDao;
@@ -24,7 +25,7 @@ public class FilmService {
 	
 	private DBUtil dbUtil;
 	
-	public void addFilmAction(String title, String description, int languageId, int categoryId, float rentalRate, int length, String rating) {
+	public void addFilmAction(String title, String description, int languageId, int categoryId, float rentalRate, int length, String rating, int storeId) {
 		Film film = new Film();
 		dbUtil = new DBUtil();
 		
@@ -44,6 +45,7 @@ public class FilmService {
 			iFilmDao.insertFilm(conn, film);
 			int filmId = iFilmDao.selectFilmCategoryByInsert(conn, film);
 			iFilmDao.insertFilmCategory(conn, filmId, categoryId);
+			iFilmDao.insertFilmInventory(conn, filmId, storeId);
 			
 			conn.commit();
 		} catch (Exception e) {
@@ -243,6 +245,91 @@ public class FilmService {
 			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
 		}
 		
+		
+		return map;
+	}
+	
+	public void addFilmPromotionByRental(int inventoryId, int customerId, int staffId) {
+		dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			Rental rental = new Rental();
+			rental.setCustomerId(customerId);
+			rental.setInventoryId(inventoryId);
+			rental.setStaffId(staffId);
+			
+			iFilmDao.insertFilmPromotionByRental(conn, rental);
+				
+			conn.commit();
+		} catch (Exception e) {
+			System.out.println("FilmService 예외 발생");
+			e.printStackTrace();
+			try {conn.rollback();} catch (Exception e2) {e2.printStackTrace();}
+		} finally {
+			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
+		}
+	}
+	
+	public void modifyFilmPromotionByReturn(int inventoryId) {
+		dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			iFilmDao.updateFilmPromotionByReturn(conn, inventoryId);
+				
+			conn.commit();
+		} catch (Exception e) {
+			System.out.println("FilmService 예외 발생");
+			e.printStackTrace();
+			try {conn.rollback();} catch (Exception e2) {e2.printStackTrace();}
+		} finally {
+			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
+		}
+	}
+	
+	public Map<String, Object> getFilmPromotionOne(int filmId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		dbUtil = new DBUtil();
+		
+		Connection conn = null;
+		
+		try {
+			conn = dbUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			List<Rental> list = iFilmDao.selectFilmPromotionOneAll(conn, filmId);
+			
+			List<Rental> checkList = iFilmDao.selectFilmPromotionOneReturn(conn, filmId);
+			for(int i=0; i<checkList.size(); i++) {
+				for(int j=0; j<list.size(); j++) {
+					if(list.get(j).getInventoryId() == checkList.get(i).getInventoryId()) {
+						list.get(j).setRentalDate(checkList.get(i).getRentalDate());
+						list.get(j).setCustomerName(checkList.get(i).getCustomerName());
+					}
+				}
+			}
+			
+			map.put("list", list);
+			map.put("allPromotion", list.size());
+			map.put("returnPromotion", checkList.size());
+				
+			conn.commit();
+		} catch (Exception e) {
+			System.out.println("FilmService 예외 발생");
+			e.printStackTrace();
+			try {conn.rollback();} catch (Exception e2) {e2.printStackTrace();}
+		} finally {
+			try {conn.close();} catch (Exception e2) {e2.printStackTrace();}
+		}
 		
 		return map;
 	}
